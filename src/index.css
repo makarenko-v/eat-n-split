@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #495057;
+}
+
+.friend-container {
+    width: 400px;
+}
+
+button {
+    padding: 10px 15px;
+    background-color: #f49d0c;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.friends {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.friends li {
+    display: flex;
+    padding: 10px 20px;
+
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+
+.friends li img {
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+}
+
+.add {
+    display: flex;
+    padding: 0 20px;
+}
+
+.add button {
+    margin-left: auto;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar {
+    padding: 30px;
+    border-radius: 10px;
+    background-color: #fef3c7;
+}
+
+.sidebar p {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 20px;
+    width: 400px;
+}
+
+.bill-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.control input {
+    padding: 10px;
+    width: 150px;
+    border: none;
+    border-radius: 5px;
+}
