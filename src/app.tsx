@@ -1,76 +1,67 @@
-const imageUrl =
-  "https://gravatar.com/avatar/27205e5c51cb03f862138b22bcb5dc20f94a342e744ff6df1b8dc8af3c865109";
+import { useState } from "react";
 
-const friends = [
+import { FriendList } from "./components/friends";
+import { AddFriendForm } from "./components/add-friend-form";
+import { SplitBillForm } from "./components/split-bill-form";
+
+import { Friend } from "./types";
+
+const FRIENDS: Friend[] = [
   {
+    id: crypto.randomUUID(),
     name: "Clark",
-    debt: 10,
+    imageUrl: "https://i.pravatar.cc/48?u=118836",
+    debt: -7,
   },
   {
-    name: "John",
-    debt: -10,
+    id: crypto.randomUUID(),
+    name: "Sarah",
+    imageUrl: "https://i.pravatar.cc/48?u=933372",
+    debt: 20,
   },
   {
-    name: "Steve",
+    id: crypto.randomUUID(),
+    name: "Anthony",
+    imageUrl: "https://i.pravatar.cc/48?u=499476",
     debt: 0,
   },
 ];
 
 export function App() {
+  const [friends, setFriends] = useState<Friend[]>(FRIENDS);
+  const [selectedFriend, setSelectedFriend] = useState<Friend | null>(null);
+
+  function handleSelectFriend(friend: Friend | null) {
+    setSelectedFriend(friend);
+  }
+
+  function handleAddFriend(friend: Friend) {
+    setFriends((prevFriends) => [...prevFriends, friend]);
+  }
+
+  function handleSplitBill(bill: number) {
+    setFriends(
+      friends.map((friend) =>
+        friend.name === selectedFriend?.name
+          ? { ...friend, debt: bill }
+          : friend,
+      ),
+    );
+  }
+
   return (
     <div className="container">
       <div className="friend-container">
-        <ul className="friends">
-          {friends.map((friend, index) => {
-            let text: string;
-
-            if (friend.debt > 0) {
-              text = `${friend.name} owes you $${friend.debt}`;
-            } else if (friend.debt < 0) {
-              text = `You owe ${friend.name} $${Math.abs(friend.debt)}`;
-            } else {
-              text = `You and ${friend.name} are even`;
-            }
-
-            return (
-              <li key={index}>
-                <div className="left">
-                  <img src={imageUrl} alt={friend.name} />
-                  <div className="info">
-                    <h3>{friend.name}</h3>
-                    <p className="debt">{text}</p>
-                  </div>
-                </div>
-                <button type="button">Select</button>
-              </li>
-            );
-          })}
-        </ul>
-        <div className="add">
-          <button type="button">Add a friend</button>
-        </div>
+        <FriendList friends={friends} onFriendSelected={handleSelectFriend} />
+        <AddFriendForm onFriendAdded={handleAddFriend} />
       </div>
-      <aside className="sidebar">
-        <p>Split a bill with somebody</p>
-        <form className="bill-form">
-          <div className="control">
-            <label htmlFor="bill">💰 Bill value</label>
-            <input id="bill" type="text" />
-          </div>
-          <div className="control">
-            <label htmlFor="expense">👤 Your expense</label>
-            <input id="expense" type="text" />
-          </div>
-          <div className="control">
-            <label htmlFor="expense2">👥 Somebody&apos;s expense</label>
-            <input id="expense2" type="text" />
-          </div>
-          <div className="control">
-            <label htmlFor="select">🤑 Who&apos;s paying the bill?</label>
-            <input id="select" type="select" />
-          </div>
-        </form>
-      </aside>
+      {selectedFriend !== null && (
+        <SplitBillForm
+          friend={selectedFriend}
+          onSplitBill={handleSplitBill}
+          onFriendSelected={handleSelectFriend}
+        />
+      )}
     </div>
   );
 }

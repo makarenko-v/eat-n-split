@@ -33,7 +33,7 @@ button {
 
 .friends li {
     display: flex;
-    padding: 10px 20px;
+    padding: 10px 0;
 
     justify-content: space-between;
     align-items: center;
@@ -47,24 +47,24 @@ button {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 15px;
+    padding: 10px;
 }
 
 
 .friends li img {
-    width: 80px;
-    height: 80px;
+    width: 60px;
+    height: 60px;
 
     border-radius: 50%;
 }
 
 .add {
     display: flex;
-    padding: 0 20px;
 }
 
 .add button {
     margin-left: auto;
+    margin-bottom: 10px;
 }
 
 .container {
@@ -79,6 +79,7 @@ button {
     padding: 30px;
     border-radius: 10px;
     background-color: #fef3c7;
+    height: 400px;
 }
 
 .sidebar p {
@@ -89,11 +90,12 @@ button {
     width: 400px;
 }
 
-.bill-form {
+.form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     padding: 20px 0;
+    height: 100%;
 }
 
 .control {
@@ -102,9 +104,37 @@ button {
     align-items: center;
 }
 
-.control input {
+.control input, select {
     padding: 10px;
     width: 150px;
     border: none;
     border-radius: 5px;
+    outline: none;
+}
+
+.control button {
+    margin-left: auto;
+}
+
+
+.submit-btn {
+    margin-top: auto;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.add-container {
+    border-radius: 10px;
+    background-color: #fef3c7;
+    padding: 0 20px;
+}
+
+.close-btn {
+    margin-top: 20px;
 }
